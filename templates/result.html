@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=your-size-in-number">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style2.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Result</title>
+</head>
+<body>
+	<!-- Preloader with Bootstrap Progress Bar -->
+	<div class='loader' id="loader">
+	  <div class='loader-container'>
+	    <h3><b>Please wait a moment while we are scanning !</b></h3>
+	    <div class='progress progress-striped active'>
+	      <div class='progress-bar progress-bar-color' id='bar' role='progressbar' style='width: 0%;'></div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Landing Page -->
+	<!-- Image and text -->
+	<nav class="navbar navbar-light bg-light">
+	  <a class="navbar-brand" href="index.html">
+	    <img src="/static/xlt.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+	    XLT
+	  </a>
+	</nav>
+	<div class="jumbotron">
+		<h1 style="text-align: center; color: #F3081A;">RESULT</h1>
+		<pre>
+		<div style="background-color: #FFFFFF; padding: 10px; border-radius: 5px; padding-left: 10px; text-align: justify;text-justify: inter-word;">
+		{{ text }}
+	</div>
+		</pre>
+	</div>
+	
+	
+   <script>
+   	var progress = setInterval(function () {
+	    var $bar = $("#bar");
+
+	    if ($bar.width() >= 600) {
+	        clearInterval(progress);
+	    } else {
+	        $bar.width($bar.width() + 60);
+	    }
+	    $bar.text($bar.width() / 6 + "%");
+	    if ($bar.width() / 6 == 100){
+	      $bar.text("Still working ... " + $bar.width() / 6 + "%");
+	      $(".loader").fadeOut(3000);
+	    }
+	}, 800);
+
+	$(window).load(function() {
+	  $("#bar").width(600);
+	  $(".loader").fadeOut(10000);
+	  // $("#loader").hide();
+	},);
+   </script>
+</body>
+</html>
